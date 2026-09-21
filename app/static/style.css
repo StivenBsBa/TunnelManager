@@ -1,0 +1,13 @@
+:root { color-scheme: dark; --bg:#0d1117; --surface:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e; --blue:#2f81f7; --red:#da3633; --green:#3fb950; --amber:#d29922; }
+* { box-sizing:border-box; }
+body { margin:0; min-width:320px; color:var(--text); background:var(--bg); font:14px/1.5 system-ui,-apple-system,sans-serif; }
+main { max-width:1200px; margin:0 auto; padding:42px 24px; }
+header { display:flex; justify-content:space-between; gap:24px; align-items:end; margin-bottom:30px; }
+h1 { margin:0; font-size:28px; letter-spacing:-.5px; } p { margin:4px 0 0; color:var(--muted); }
+.counts { display:flex; gap:18px; color:var(--muted); white-space:nowrap; } .counts strong { color:var(--text); }
+.table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:760px; } th,td { padding:15px 16px; text-align:left; border-bottom:1px solid var(--border); vertical-align:middle; } th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.05em; } tr:last-child td { border:0; }
+a { color:#58a6ff; text-decoration:none; } a:hover { text-decoration:underline; } button { cursor:pointer; color:white; background:var(--blue); border:0; border-radius:6px; padding:7px 11px; font:inherit; } button:hover { filter:brightness(1.12); } button:disabled { opacity:.6; cursor:wait; } button.danger { background:var(--red); } td:last-child { white-space:nowrap; } td:last-child button + button { margin-left:7px; }
+.status { font-weight:600; } .local { color:var(--muted); } .creating { color:var(--amber); } .published { color:var(--green); } .error,.disconnected { color:#ff7b72; } small { display:block; max-width:250px; margin-top:3px; color:#ff7b72; font-weight:400; }
+.warning { max-width:230px; margin-top:5px; color:var(--amber); font-size:12px; line-height:1.35; }.load-error { margin:0 0 16px; color:#ff7b72; }
+@media (max-width:700px) { main { padding:24px 14px; } header { display:block; } .counts { margin-top:16px; flex-wrap:wrap; gap:8px 16px; } }

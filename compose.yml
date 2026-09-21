@@ -1,0 +1,12 @@
+services:
+  tunnel-manager:
+    build: .
+    container_name: tunnel-manager
+    restart: unless-stopped
+    ports:
+      - "7004:7004"
+    extra_hosts:
+      # Funciona en Linux; Docker Desktop ya proporciona este nombre en Windows/macOS.
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro

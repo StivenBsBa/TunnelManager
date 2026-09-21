@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tunnel Manager</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>Tunnel Manager</h1>
+          <p>Cloudflare Quick Tunnels</p>
+        </div>
+        <div class="counts">
+          <span
+            >Servicios detectados: <strong id="service-count">0</strong></span
+          ><span>Túneles activos: <strong id="tunnel-count">0</strong></span>
+        </div>
+      </header>
+      <p id="load-error" class="load-error" hidden></p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Puerto</th>
+              <th>Estado</th>
+              <th>Publicar</th>
+              <th>Enlace</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="services"></tbody>
+        </table>
+      </div>
+    </main>
+    <template id="portainer-warning"
+      ><p class="warning">
+        Servicio administrativo. Asegúrate de mantener autenticación habilitada
+        antes de publicarlo.
+      </p></template
+    >
+    <script src="/static/app.js"></script>
+  </body>
+</html>
