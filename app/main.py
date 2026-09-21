@@ -42,16 +42,23 @@ def detected_services() -> list[dict]:
         raise HTTPException(status_code=503, detail=f"Docker unavailable: {exc}") from exc
 
     services: list[dict] = []
+    seen: set[tuple[str, int]] = set()
     for container in containers:
         ports = container.attrs.get("NetworkSettings", {}).get("Ports", {}) or {}
-        for binding in ports.values():
+        for container_port, binding in ports.items():
+            # Quick Tunnels proxy HTTP/TCP services; ignore UDP-only mappings.
+            if not container_port.endswith("/tcp"):
+                continue
             if not binding:
                 continue
             for item in binding:
                 host_port = item.get("HostPort")
                 if host_port and host_port.isdigit():
                     port = int(host_port)
-                    if port != PANEL_PORT:
+                    key = (container.name, port)
+                    # Docker can report the same host port for IPv4 and IPv6.
+                    if port != PANEL_PORT and key not in seen:
+                        seen.add(key)
                         services.append({"name": container.name, "port": port})
     return sorted(services, key=lambda service: (service["port"], service["name"]))
 
